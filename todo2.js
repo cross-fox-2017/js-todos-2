@@ -79,8 +79,25 @@ class ToDo{
     let save = JSON.stringify(this.data)
     fs.writeFileSync('data.json', save)
   }
-  static listOut(typesort){
-
+  static sort(typesort){
+    if (typesort == "dsc"){
+      this.data.sort(function(a,b) {
+      if ( a.createdAt > b.createdAt )
+          return -1;
+      if ( a.createdAt < b.createdAt )
+          return 1;
+      return 0;
+      })
+    } else {
+      this.data.sort(function(a,b) {
+      if ( a.createdAt < b.createdAt )
+          return -1;
+      if ( a.createdAt > b.createdAt )
+          return 1;
+      return 0;
+      })
+    }
+    return this.data
   }
   static listComp(typesort){
 
@@ -92,7 +109,9 @@ class ToDo{
 
   }
 }
-console.log(run());
+ToDo.getJSON()
+console.log(ToDo.listOut());
+// console.log(run());
 function run(){
   let cmd = process.argv[2]
   let taskid = process.argv.slice(3).join(" ")
