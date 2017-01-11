@@ -18,7 +18,7 @@ class ToDo{
     this.data = []
   }
   static help(){
-     console.log(`\t node todo.js \n \t node todo.js help \n\t node todo.js list \n\t node todo.js add <task_content> \n\t node todo.js task <task_id> \n\t node todo.js delete <task_id> \n\t node todo.js complete <task_id> \n\t node todo.js uncomplete <task_id>`);
+     console.log(`\t node todo.js \n \t node todo.js help \n\t node todo.js list \n\t node todo.js list:outstanding asc|desc \n\t node todo.js list:completed asc|desc \n\t node todo.js add <task_content> \n\t node todo.js task <task_id> \n\t node todo.js delete <task_id> \n\t node todo.js complete <task_id> \n\t node todo.js uncomplete <task_id> \n\t node todo.js filter <tag> \n\t node todo.js tag <tag1><tag2>..<tag n>`);
      return ""
   }
   static list(typeComplete){
@@ -62,6 +62,7 @@ class ToDo{
     for (let i = 0; i< this.data.length; i++){
       if(id == this.data[i].id){
         this.data[i].completed = "[X]"
+        this.data[i].completedAt = new Date().toLocaleString()
         this.saveJSON()
         return `${this.data[i].name} status completed`
       }
@@ -72,6 +73,7 @@ class ToDo{
     for (let i = 0; i< this.data.length; i++){
       if(id == this.data[i].id){
         this.data[i].completed = "[ ]"
+        this.data[i].completedAt = ""
         this.saveJSON()
         return `${this.data[i].name} status Uncomplete`
       }
@@ -87,7 +89,7 @@ class ToDo{
     fs.writeFileSync('data.json', save)
   }
   static sort(typesort){
-    if (typesort == "dsc"){
+    if (typesort == "desc"){
       this.data.sort(function(a,b) {
       if ( a.createdAt > b.createdAt )
           return -1;
@@ -113,7 +115,7 @@ class ToDo{
           this.data[i].tags[j] = tags[j]
         }
         this.saveJSON()
-        return `${this.data[i].name} tagged with ${tags}`
+        return `Task ${this.data[i].name} tagged with tag(s): ${tags}`
       }
     }
     return "id tidak ditemukan"
@@ -128,29 +130,30 @@ class ToDo{
         }
       }
     }
-    if (filtered == []){
-      return `${tag} tag tidak ditemukan dalam todo list`
+    if (filtered.length == 0 ){
+      return `"${tag}" tag tidak ditemukan dalam todo list`
     } else {
       return `"${filtered.join(" & ")}" memiliki tag "${tag}"`
     }
   }
 }
 ToDo.getJSON()
-console.log(ToDo.list("biasa"))
-console.log(ToDo.tagging(4, ["psikologi", "jeda"]))
-console.log(ToDo.task(4))
-console.log(ToDo.filter("jeda"));
-// console.log(run());
+// console.log(ToDo.list("biasa"))
+// console.log(ToDo.tagging(4, ["psikologi", "jeda"]))
+// console.log(ToDo.task(4))
+// console.log(ToDo.filter("jeda"));
+console.log(run());
 function run(){
-  let cmd = process.argv[2]
-  let taskid = process.argv.slice(3).join(" ")
+  let cmd = process.argv[2];
+  let tagg = process.argv[3];
+  let taskid = process.argv.slice(3).join(" ");
   ToDo.getJSON()
   switch (cmd) {
     case "help":
       return ToDo.help()
       break;
     case "list":
-      return ToDo.list()
+      return ToDo.list("biasa")
       break;
     case "add":
       return ToDo.add(taskid)
@@ -166,6 +169,30 @@ function run(){
       break;
     case "uncomplete":
       return ToDo.uncomplete(taskid)
+      break;
+    case "filter":
+      return ToDo.filter(taskid)
+      break;
+    case "tag":
+      return ToDo.tagging(tagg, process.argv.slice(4))
+      break;
+    case "list:outstanding":
+      if (taskid == "desc"){
+        ToDo.sort("desc")
+        return ToDo.list("belum")
+      } else {
+        ToDo.sort()
+        return ToDo.list("belum")
+      }
+      break;
+    case "list:completed":
+      if (taskid == "desc"){
+        ToDo.sort("desc")
+        return ToDo.list("selesai")
+      } else {
+        ToDo.sort()
+        return ToDo.list("selesai")
+      }
       break;
     default:
       return ToDo.help()
