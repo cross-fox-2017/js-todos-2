@@ -9,6 +9,7 @@ class Task{
     this.completed = "[ ]";
     this.createdAt = new Date().toLocaleString();
     this.completedAt = ""
+    this.tags = []
   }
 }
 
@@ -106,14 +107,39 @@ class ToDo{
     return this.data
   }
   static tagging(id, tags){
-
+    for (let i = 0; i< this.data.length; i++){
+      if(id == this.data[i].id){
+        for (let j = 0; j < tags.length; j++){
+          this.data[i].tags[j] = tags[j]
+        }
+        this.saveJSON()
+        return `${this.data[i].name} tagged with ${tags}`
+      }
+    }
+    return "id tidak ditemukan"
   }
   static filter(tag){
-
+    let filtered = []
+    for (let i = 0; i< this.data.length; i++){
+      for (let j = 0; j < this.data[i].tags.length; j++){
+        if (this.data[i].tags[j] == tag){
+          filtered.push(this.data[i].name)
+          break;
+        }
+      }
+    }
+    if (filtered == []){
+      return `${tag} tag tidak ditemukan dalam todo list`
+    } else {
+      return `"${filtered.join(" & ")}" memiliki tag "${tag}"`
+    }
   }
 }
 ToDo.getJSON()
-console.log(ToDo.listOut());
+console.log(ToDo.list("biasa"))
+console.log(ToDo.tagging(4, ["psikologi", "jeda"]))
+console.log(ToDo.task(4))
+console.log(ToDo.filter("jeda"));
 // console.log(run());
 function run(){
   let cmd = process.argv[2]
