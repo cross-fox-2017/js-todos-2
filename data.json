@@ -1,0 +1,54 @@
+[
+   {
+      "id": 1,
+      "Task": "Bangun Pagi",
+      "Complete": true,
+      "Created_date": "2017-01-11T08:19:48.652Z",
+      "Complete_date": "",
+      "tag": [
+         "RAJIN",
+         "BERSIH",
+         "SEHAT"
+      ]
+   },
+   {
+      "id": 2,
+      "Task": "Mengosok Gigi",
+      "Complete": true,
+      "Created_date": "2017-01-11T08:20:02.917Z",
+      "Complete_date": "",
+      "tag": []
+   },
+   {
+      "id": 3,
+      "Task": "Mandi",
+      "Complete": false,
+      "Created_date": "2017-01-11T08:20:15.318Z",
+      "Complete_date": "",
+      "tag": [
+         "RAJIN",
+         "RAMAH"
+      ]
+   },
+   {
+      "id": 4,
+      "Task": "POOOP",
+      "Complete": false,
+      "Created_date": "2017-01-11T08:20:55.400Z",
+      "Complete_date": "",
+      "tag": [
+         "JOROK"
+      ]
+   },
+   {
+      "id": 5,
+      "Task": "SHAVING",
+      "Complete": false,
+      "Created_date": "2017-01-11T08:21:15.969Z",
+      "Complete_date": "",
+      "tag": [
+         "BERSIH",
+         "JOROK"
+      ]
+   }
+]
