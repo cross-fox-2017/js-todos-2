@@ -20,10 +20,16 @@ class ToDo{
      console.log(`\t node todo.js \n \t node todo.js help \n\t node todo.js list \n\t node todo.js add <task_content> \n\t node todo.js task <task_id> \n\t node todo.js delete <task_id> \n\t node todo.js complete <task_id> \n\t node todo.js uncomplete <task_id>`);
      return ""
   }
-  static list(){
-    var table = new Table({head: ['ID', 'Task', 'Completed'], colWidths: [10, 30, 12]});
+  static list(typeComplete){
+    let table = new Table({head: ['ID', 'Task', 'Completed'], colWidths: [10, 30, 12]});
     this.data.forEach(function(val){
-      table.push([val.id, val.name, val.completed])
+      if (typeComplete == "selesai"){
+        if (val.completed == "[X]"){table.push([val.id, val.name, val.completed])}
+      } else if (typeComplete == "belum"){
+        if (val.completed == "[ ]"){table.push([val.id, val.name, val.completed])}
+      } else if (typeComplete == "biasa"){
+        table.push([val.id, val.name, val.completed]);
+      }
     })
     return table.toString()
   }
@@ -98,9 +104,6 @@ class ToDo{
       })
     }
     return this.data
-  }
-  static listComp(typesort){
-
   }
   static tagging(id, tags){
 
