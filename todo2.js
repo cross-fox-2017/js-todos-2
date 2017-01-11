@@ -8,6 +8,7 @@ class Task{
     this.name = name;
     this.completed = "[ ]";
     this.createdAt = new Date().toLocaleString();
+    this.completedAt = ""
   }
 }
 
@@ -77,6 +78,18 @@ class ToDo{
   static saveJSON(){
     let save = JSON.stringify(this.data)
     fs.writeFileSync('data.json', save)
+  }
+  static listOut(typesort){
+
+  }
+  static listComp(typesort){
+
+  }
+  static tagging(id, tags){
+
+  }
+  static filter(tag){
+
   }
 }
 console.log(run());
