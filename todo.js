@@ -12,7 +12,7 @@ let getArgv = process.argv;
 let getNode = "$ node todo.js" // Untuk membaca dokumentasi penggunaan dari fungsi node
 
 switch (getArgv[2]) {
-  case null || 'help' :
+  case undefined || 'help' :
     console.log(`===================== HELP =====================`);
     console.log(`${getNode} add <task content>`);
     console.log(`${getNode} show list`);
@@ -28,10 +28,10 @@ switch (getArgv[2]) {
 
   case 'list' :
   for(var i = 0; i < getJSON.length; i++){
-    if(getJSON[i].status == "Complete"){
+    if(getJSON[i].Status == "Complete"){
       console.log(`${getJSON[i].ID}.[x] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
     } else {
-      console.log(`${getJSON[i].ID}.[] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
+      console.log(`${getJSON[i].ID}.[ ] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
     }
   }
   break;
@@ -90,7 +90,7 @@ switch (getArgv[2]) {
     });
     setArray(getJSON)
     for(var i = 0; i < getJSON.length; i++){
-      if(getJSON[i].status == "uncomplete"){
+      if(getJSON[i].Status == "uncomplete"){
         console.log(`${getJSON[i].ID}. [] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
       }
     }
@@ -101,7 +101,7 @@ switch (getArgv[2]) {
     });
     setArray(getJSON)
     for(var i = 0; i < getJSON.length; i++){
-      if(getJSON[i].status == "uncomplete"){
+      if(getJSON[i].Status == "uncomplete"){
         console.log(`${getJSON[i].ID}. [] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
       }
     }
@@ -116,7 +116,7 @@ switch (getArgv[2]) {
     });
     setArray(getJSON)
     for(var i = 0; i < getJSON.length; i++){
-      if(getJSON[i].status == "complete"){
+      if(getJSON[i].Status == "complete"){
         console.log(`${getJSON[i].ID}. [X] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
       }
     }
@@ -127,7 +127,7 @@ switch (getArgv[2]) {
     });
     setArray(getJSON)
     for(var i = 0; i < getJSON.length; i++){
-      if(getJSON[i].status == "complete"){
+      if(getJSON[i].Status == "complete"){
         console.log(`${getJSON[i].ID}. [X] ${getJSON[i].Task} Date : ${getJSON[i].Date}`)
       }
     }
@@ -136,7 +136,7 @@ switch (getArgv[2]) {
 
   case 'tag' :
   for(var i = 0; i < getJSON.length; i++){
-    if(getJSON[i].id == getArgv[3]){
+    if(getJSON[i].ID == getArgv[3]){
       getJSON[i]['tag'] = getArgv.slice(4).join(",")
       setArray(getJSON);
     }
