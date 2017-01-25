@@ -1,1 +1,1 @@
-[{"id":1,"task":"satu","complete":"[X]","create_date":"2017-01-11T13:44:08.723Z","tag":["halo"]},{"id":2,"task":"dua","complete":"[ ]","create_date":"2017-01-11T13:44:15.000Z","tag":[]},{"id":3,"task":"tiga","complete":"[ ]","create_date":"2017-01-11T13:44:21.743Z","tag":[]}]
+[{"id":1,"task":"satu","complete":"[X]","create_date":"2017-01-11T13:44:08.723Z","tag":["halo","murah","banyak"]},{"id":2,"task":"dua","complete":"[ ]","create_date":"2017-01-11T13:44:15.000Z","tag":[]},{"id":3,"task":"tiga","complete":"[ ]","create_date":"2017-01-11T13:44:21.743Z","tag":[]}]

@@ -29,19 +29,19 @@ switch (input[0]) {
   case 'uncomplete':
     unCompleteData()
     break;
-  case 'outstandingAsc':
+  case 'list:outstandingAsc':
     outstandingAsc()
     break;
 
-  case 'outstandingDes':
+  case 'list:outstandingDes':
     outstandingDes()
     break;
 
-  case 'completedAsc':
+  case 'list:completedAsc':
     completedAsc()
     break;
 
-  case 'completedDes':
+  case 'list:completedDes':
     completedDes()
     break;
 
@@ -140,7 +140,7 @@ function completedAsc() {
   idx =process.argv[2]
   id = process.argv[3]
   for (var i = 0; i < db.length; i++) {
-    if (idx == 'completedAsc' && db[i].complete == '[X]') {
+    if (idx == 'list:completedAsc' && db[i].complete == '[X]') {
       temp.push(db[i])
     }
   }
@@ -153,7 +153,7 @@ function completedDes() { /// untuk sorting descending data yang sudah complete
   idx = process.argv[2]
   id = process.argv[3]
   for (var i = 0; i < db.length; i++) {
-    if (idx == 'completedDes' && db[i].complete == '[X]') {
+    if (idx == 'list:completedDes' && db[i].complete == '[X]') {
       temp.push(db[i])
     }
   }
@@ -165,11 +165,14 @@ function completedDes() { /// untuk sorting descending data yang sudah complete
 function tag() {
   idx = process.argv[2]
   id = process.argv[3]
-  input = process.argv[4]
+  // input = process.argv[4]
   for (var i = 0; i < db.length; i++) {
     if ( idx == 'tag' && id == db[i].id) {
-      db[i].tag.push(input)
-      console.log(db[i].tag);
+      for (var j = 4; j < process.argv.length; j++) {
+        db[i].tag.push(process.argv[j])
+      }
+      break;
+      // console.log(db[i].tag);
     }
   }
   jsonfile.writeFileSync(file, db)
