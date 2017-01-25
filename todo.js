@@ -119,7 +119,7 @@ if(argv[2] == undefined) {
   }
 
   if(argv[2] == 'list:completed') {
-    if(argv[3] == 'asc') {
+    if(argv[3] == 'asc' || argv[3] == undefined) {
       let tmp = []
       console.log(`Ascending completed list`)
       for (var i = 0; i < data.length; i++) {
@@ -136,7 +136,7 @@ if(argv[2] == undefined) {
         tmp[j].id = j+1
         console.log(`[X] ${tmp[j].id}. ${tmp[j].task} ${tmp[j].created_at} ${tmp[j].completed_at} ${tmp[j].tag}`)
       }
-    } else if (argv[3] == 'dsc') {
+    } else if (argv[3] == 'dsc' || argv[3] == undefined) {
       let tmp = []
       console.log(`Descending completed list`)
       for (var i = 0; i < data.length; i++) {
