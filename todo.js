@@ -81,7 +81,7 @@ if(argv[2] == undefined) {
   }
 
   if(argv[2] == 'list:outstanding') {
-    if(argv[3] == 'asc') {
+    if(argv[3] == 'asc' || argv[3] == undefined) {
       let tmp = []
       console.log(`Ascending unmarked list`)
       for (var i = 0; i < data.length; i++) {
