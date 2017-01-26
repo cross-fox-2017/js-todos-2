@@ -26,8 +26,8 @@ if(argv[2] == undefined) {
     console.log(`${word} delete <task_id>`);
     console.log(`${word} complete <task_id>`);
     console.log(`${word} uncomplete <task_id>`);
-    console.log(`${word} list:outstanding asc|desc`);
-    console.log(`${word} list:completed asc|desc`);
+    console.log(`${word} list:outstanding asc|dsc`);
+    console.log(`${word} list:completed asc|dsc`);
     console.log(`${word} tag <task_id> <tag_name_1> <tag_name_2> .. <tag_name_N>`);
   }
 
@@ -164,7 +164,7 @@ if(argv[2] == undefined) {
 
   if(argv[2].split(':')[0] == 'filter') {
     let tmp = []
-    let cond = argv[2].split(':')[1].toLowerCase()
+    let cond = argv[2].split(':')[1]
     for(var i = 0; i < data.length; i++) {
       if(data[i].tag.indexOf(cond) != -1) {
         tmp.push(data[i])
